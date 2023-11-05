@@ -20,15 +20,17 @@ const Map = ({
   layer,
   onFeatureClick,
   onFeatureHover,
+  fitBoundsOnChange,
 }: {
   layer?: GeojsonLayer;
   onFeatureClick?: MapMouseHandler;
   onFeatureHover?: MapMouseHandler;
+  fitBoundsOnChange?: boolean;
 }) => {
   return (
     <MapContainer
       zoomControl={false}
-      style={{ height: "100%", width: "100%" }}
+      className="h-full w-full absolute top-0 left-0 z-0"
       center={MADRID_COORDS}
       zoom={6}
     >
@@ -41,6 +43,19 @@ const Map = ({
       />
       {layer && (
         <GeoJSON
+          eventHandlers={{
+            add: (event) => {
+              if (!fitBoundsOnChange) return;
+
+              const layer = event.target;
+              const map = layer._map;
+
+              map?.flyToBounds(layer.getBounds(), {
+                animate: true,
+                duration: 0.75,
+              });
+            },
+          }}
           key={layer.properties.id}
           onEachFeature={(feature, layer) => {
             layer.on({
