@@ -1,4 +1,4 @@
-export function getGeojson(id: number): Promise<GeojsonLayer> {
+export function getGeojson(id: string): Promise<GeojsonLayer> {
   return fetch(`/geojson/${id}.geojson`).then((res) => res.json());
 }
 
@@ -18,10 +18,9 @@ export type Geojson<PropertiesType, FeatureProperties = PropertiesType> = {
 };
 
 export type GeojsonFeatureData = {
-  id: number;
+  id: string;
   name: string;
-  parent_id: number;
-  parent_name: string;
+  parents: { id: string; name: string }[];
 };
 
 export type GeojsonLayer = Geojson<GeojsonFeatureData>;
