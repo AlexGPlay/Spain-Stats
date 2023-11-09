@@ -2,8 +2,7 @@
   "type": "FeatureCollection",
   "properties": {
     "id": 53,
-    "parent_id": 0,
-    "parent_name": "España"
+    "parents": [{ "name": "España", "id": 0 }]
   },
   "features": [
     {

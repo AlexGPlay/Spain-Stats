@@ -3,8 +3,7 @@
   "properties": {
     "id": 0,
     "name": "España",
-    "parent_id": null,
-    "parent_name": null
+    "parents": []
   },
   "features": [
     {
