@@ -1,0 +1,3 @@
+name: spain-stats
+runtime: nodejs
+description: TypeScript defined infra for spain-stats
